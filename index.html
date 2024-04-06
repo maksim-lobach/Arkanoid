@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://fe.it-academy.by/JQ/jquery.js"></script>
+    <script type="module" src="./save.js" defer></script>
+    <script type="module" src="./script.js" defer></script>
+    <script type="module" src="./audio.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="./image/arkanoid.png">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Arkanoid Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div id="welcomePage">
+        <h2>Добро пожаловать!</h2>
+        <p>Вашему вниманию представляется игра Арканоид.</p>
+        <p>Для начала игры введите имя которое может состоять из латинских букв, цифр, знака подчёркивания и должно быть
+            длиной минимум 5 символов:</p>
+        <input type="text" id="playerNameInput" placeholder="Введите ваше имя">
+        <span id="error-message" style="display: none; color: red;"></span>
+        <button id="nextPlay">Перейти к игре</button>
+        <button id="controlGames">Управление</button>
+        <button id="showRecords">Результаты</button>
+        <button id="musicButton">
+            <img src="./image/speakerOff.png" id="speakerImage" alt="Выключенный звук"
+                title="Нажмите, чтобы включить звук">
+        </button>
+    </div>
+
+
+    <div id="gamePage" style="display: none;">
+        <div class="game-info">
+            <div class="player-info">
+                <button id="startButton" class="startImage">Начать игру</button>
+                <button id="pauseButton" class="pauseImage">Пауза</button>
+                <p class="label">Имя: <span id="playerName"></span></p>
+                <p class="label">Счёт: <span id="score"></span></p>
+                <p class="label">Попытки: <span id="lives"></span></p>
+                <p class="label">Уровень: <span id="level"></span></p>
+            </div>
+            <canvas id="gameCanvas" width="573" height="500"></canvas>
+
+
+        </div>
+    </div>
+
+
+    <div id="controlGame">
+        <h3>Виды и характеристики кирпичей</h3>
+        <div class="brick" style="background-color: red; height: 20px; width: 50px;"></div>
+        <p>Разрушается с одного попадания</p>
+        <div class="brick" style="background-color: blue; height: 20px; width: 50px;"></div>
+        <p>Разрушается с двух попаданий. При первом попадании изменяет цвет на красный.</p>
+        <div class="brick" style="background-color: green; height: 20px; width: 50px;"></div>
+        <p>Разрушается с трех попаданий. При первом попадании изменяет цвет на синий, а при втором на красный.</p>
+        <div id="controlsDescription">
+            <h3>Управление:</h3>
+            <p>Управление происходит клавиатурой &mdash; стрелочки лево, право.</p>
+            <p>Мышка &mdash; пока курсор в зоне холста "площадка" реагирует на движение право и лево.</p>
+            <p>Нажатия всех кнопок и уведомлений по левому клику.</p>
+            <p>Тач управление &mdash; при помощи пальца по экрану и тапа по экрану.</p>
+        </div>
+        <div id="soundsDescription">
+            <h3>Звуки</h3>
+            <p>В главном меню звук отключен, нажмите на Динамик перечеркнутый чтобы включить звук.</p>
+        </div>
+        <button id="toggleControlButton">Закрыть</button>
+    </div>
+
+
+    <div id="resultsTable" class="center">
+        <h3>Таблица результатов</h3>
+
+        <table id="results">
+
+        </table>
+        <button id="toggleResultsButton">Закрыть</button>
+    </div>
+
+    <div id="overlay">
+        <div id="message">Поздравляем! Уровень пройден!</div>
+        <button id="continueButton">Продолжить</button>
+    </div>
+
+    <audio id="brickSound" src="./audio/bricks_break.mp3"></audio>
+    <audio id="rocketSound" src="./audio/rocket_hit.mp3"></audio>
+    <audio id="brickHitSound" src="./audio/brick_hits.mp3"></audio>
+    <audio id="gameOverSound" src="./audio/game_over.mp3"></audio>
+    <audio id="levelUpSound" src="./audio/level_up.mp3"></audio>
+
+</body>
+
+</html>
